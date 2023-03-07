@@ -19,8 +19,9 @@
 	</properties>
 	<repositories>
    		<repository>
-      		<id>jcenter</id>
-      		<url>https://repo.spring.io/plugins-release/ </url>
+      		<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+      		<url>https://repo.spring.io/ui/native/libs-milestone/ </url>
     		<releases>
         		<enabled>true</enabled>
     		</releases>
