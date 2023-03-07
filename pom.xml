@@ -21,15 +21,12 @@
    		<repository>
       		<id>jcenter</id>
       		<url>https://repo.spring.io/plugins-release/ </url>
-      		<snapshots>
-       		 	<enabled>true</enabled>
-        		<updatePolicy>never</updatePolicy>
-        		<checksumPolicy>warn</checksumPolicy>
-      		</snapshots>
-       		<releases>
-         		<enabled>true</enabled>
-         		<checksumPolicy>warn</checksumPolicy>
-      		</releases>
+    		<releases>
+        		<enabled>true</enabled>
+    		</releases>
+    		<snapshots>
+     			<enabled>false</enabled>
+    		</snapshots>
    		</repository>
 	</repositories>
 	<dependencies>
