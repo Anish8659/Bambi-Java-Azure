@@ -16,14 +16,14 @@
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud-azure.version>5.0.0</spring-cloud-azure.version>
+		<pluginRepositories>
+    		<pluginRepository>
+        		<id>spring-milestones</id>
+        		<name>Spring Milestones</name>
+        		<url>https://repo.spring.io/libs-milestone</url>
+    		</pluginRepository>
+		</pluginRepositories>
 	</properties>
-	<pluginRepositories>
-    	<pluginRepository>
-        	<id>spring-milestones</id>
-        	<name>Spring Milestones</name>
-        	<url>https://repo.spring.io/libs-milestone</url>
-    	</pluginRepository>
-	</pluginRepositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
