@@ -17,7 +17,21 @@
 		<java.version>17</java.version>
 		<spring-cloud-azure.version>5.0.0</spring-cloud-azure.version>
 	</properties>
-
+	<repositories>
+   		<repository>
+      		<id>jcenter</id>
+      		<url>https://repo.spring.io/plugins-release/ </url>
+      		<snapshots>
+       		 	<enabled>true</enabled>
+        		<updatePolicy>never</updatePolicy>
+        		<checksumPolicy>warn</checksumPolicy>
+      		</snapshots>
+       		<releases>
+         		<enabled>true</enabled>
+         		<checksumPolicy>warn</checksumPolicy>
+      		</releases>
+   		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -39,10 +53,9 @@
 			<groupId>com.azure.spring</groupId>
 			<artifactId>spring-cloud-azure-starter-jdbc-mysql</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.orange.clara.cloud.boot.ssl-truststore-gen/spring-boot-ssl-truststore-gen -->
 		<dependency>
-    		<groupId>com.orange.clara.cloud.boot.ssl-truststore-gen</groupId>
-    		<artifactId>spring-boot-ssl-truststore-gen</artifactId>
+   			<groupId>com.orange.clara.cloud.boot.ssl-truststore-gen</groupId>
+   			<artifactId>spring-boot-ssl-truststore-gen</artifactId>
    			<version>2.0.21</version>
 		</dependency>
 		<dependency>
