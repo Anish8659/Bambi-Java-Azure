@@ -34,9 +34,6 @@ public class StockController {
         //Get list of sizes
         List<Size> sizes = sizeService.getSizesByProductId(product.getId());
 
-        // Get a list of low stock products
-        List<Product> lowStockProducts = productService.getLowStockProducts();
-        model.addAttribute("lowStockProducts", lowStockProducts);
 
         //Add the stock details to the model
         model.addAttribute("product", product);
@@ -46,15 +43,13 @@ public class StockController {
     }
 
     @PostMapping("product/stock/{sizeId}")
-    public String updateProductStock(@PathVariable Long sizeId, @RequestParam("stockToAdd") int stockToAdd, Model model) {
+    public String updateProductStock(@PathVariable Long sizeId, @RequestParam("stockToAdd") int stockToAdd) {
         Size size = sizeService.getSizeById(sizeId);
 
         int newStockLevel = size.getProductStock() + stockToAdd;
         size.setProductStock(newStockLevel);
         sizeService.saveSize(size);
-        // Get a list of low stock products
-        List<Product> lowStockProducts = productService.getLowStockProducts();
-        model.addAttribute("lowStockProducts", lowStockProducts);
+
         return "redirect:/product/stock/" + size.getProduct().getId();
 
     }

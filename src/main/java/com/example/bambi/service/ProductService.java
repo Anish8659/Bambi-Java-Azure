@@ -22,6 +22,4 @@ public interface ProductService {
 
 
     List<Product> getAllProducts();
-
-    List<Product> getLowStockProducts();
 }
