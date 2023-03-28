@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'bambiadmin'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_6179B02565AC41638878A4543DD1431E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A4325ECEA38C43D3B39C86F16E6F55DB }}
           package: '*.jar'
