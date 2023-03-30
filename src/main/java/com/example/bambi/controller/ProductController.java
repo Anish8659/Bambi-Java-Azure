@@ -8,6 +8,7 @@ import com.example.bambi.service.SizeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,7 +44,7 @@ public class ProductController {
 
     //GET request if no search all listed products shown, if search then only matched products shown
     @GetMapping("/products")
-    public String listAllProducts(String keyword, Model model) {
+    public String listAllProducts(String keyword, Model model, Authentication authentication) {
         // Default: the home page will be sorted by product name asc.
 
         return findPaginated(keyword,1, "productName", "asc", model);
@@ -52,35 +53,41 @@ public class ProductController {
     //Handles pagination
     @GetMapping("/products/{pageNo}")
     public String findPaginated(
-            @RequestParam(name = "keyword", defaultValue = "") String keyword,
+            @RequestParam(name = "keyword") String keyword,
             @PathVariable(value = "pageNo") int pageNo,
             @RequestParam("sortField") String sortField,
             @RequestParam(value = "sortDir") String sortDir,
             Model model) {
 
-        // keyword will always have a value
-        if (keyword == null) {
-            keyword = "";
+        try {
+            // keyword will always have a value
+            if (keyword == null) {
+                keyword = "";
+            }
+
+            int pageSize = 5;
+            Page<Product> page = productService.findPaginated(keyword, pageNo, pageSize, sortField, sortDir);
+
+            // Get a list of low stock products
+            List<Product> lowStockProducts = productService.getLowStockProducts();
+
+            // filter the products based on the current page
+            List<Product> listProducts = page.getContent();
+
+            model.addAttribute("currentPage", pageNo);
+            model.addAttribute("totalPages", page.getTotalPages());
+            model.addAttribute("totalItems", page.getTotalElements());
+            model.addAttribute("sortField", sortField);
+            model.addAttribute("sortDir", sortDir);
+            model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+            model.addAttribute("listProducts", listProducts);
+            model.addAttribute("lowStockProducts", lowStockProducts);
+            model.addAttribute("keyword", keyword);
+        } catch (Exception e) {
+            // handle the exception
+            model.addAttribute("errorMessage", "An error occurred: " + e.getMessage());
         }
 
-        int pageSize = 5;
-        Page<Product> page = productService.findPaginated(keyword, pageNo, pageSize, sortField, sortDir);
-
-        // Get a list of low stock products
-        List<Product> lowStockProducts = productService.getLowStockProducts();
-
-        // filter the products based on the current page
-        List<Product> listProducts = page.getContent();
-
-        model.addAttribute("currentPage", pageNo);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("totalItems", page.getTotalElements());
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
-        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-        model.addAttribute("listProducts", listProducts);
-        model.addAttribute("lowStockProducts", lowStockProducts);
-        model.addAttribute("keyword", keyword);
         return "products";
     }
 
