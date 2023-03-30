@@ -84,9 +84,9 @@ public class OrderPDFExporter {
 
         document.open();
 
-        Image image = Image.getInstance("src/main/resources/static/images/Bambi-Shoes-Logo-Text-only-1.png");
-
-        document.add(image);
+//        Image image = Image.getInstance("src/main/resources/static/images/Bambi-Shoes-Logo-Text-only-1.png");
+//
+//        document.add(image);
         if (this.timeLength.equals("Year")) {
             document.add(new Paragraph("Current " + timeLength + "'s Orders Report"));
         } else {

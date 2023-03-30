@@ -58,8 +58,8 @@ public class StockPDFExporter {
         PdfWriter.getInstance(document, response.getOutputStream());
 
         document.open();
-        Image image = Image.getInstance("src/main/resources/static/images/Bambi-Shoes-Logo-Text-only-1.png");
-        document.add(image);
+//        Image image = Image.getInstance("src/main/resources/static/images/Bambi-Shoes-Logo-Text-only-1.png");
+//        document.add(image);
         document.add(new Paragraph("Date of Report: " + new Date(), font));
         document.add(new Paragraph("Low In Stock: Any product with a stock level lower than 13"));
         //Create low stock table
