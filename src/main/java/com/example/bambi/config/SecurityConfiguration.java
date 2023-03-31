@@ -66,9 +66,9 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .requestMatchers(new AntPathRequestMatcher("/bambi-photos/**/*.jpg")).permitAll()
-                    .requestMatchers(new AntPathRequestMatcher("/bambi-photos/**/*.png")).permitAll()
-                    .requestMatchers(new AntPathRequestMatcher("/bambi-photos/**/*.webp")).permitAll()
+                    .requestMatchers(new AntPathRequestMatcher("/images/**/*.jpg")).permitAll()
+                    .requestMatchers(new AntPathRequestMatcher("/images/**/*.png")).permitAll()
+                    .requestMatchers(new AntPathRequestMatcher("/images/**/*.webp")).permitAll()
                     .requestMatchers("/manage_editors").hasAuthority("ROLE_MAIN_ADMIN")
                     .requestMatchers("/products").authenticated()
                     .requestMatchers("/").authenticated()
