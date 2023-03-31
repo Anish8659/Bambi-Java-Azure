@@ -218,7 +218,7 @@ public class ProductController {
     private void saveImageToFolder(MultipartFile image) throws IOException {
         String filename = image.getOriginalFilename();
 
-        String uploadDir = "/static/images/";
+        String uploadDir = "static/images/";
         Path uploadPath = Paths.get(uploadDir);
 
         if (!Files.exists(uploadPath)) {
@@ -237,7 +237,7 @@ public class ProductController {
     //Param - takes image name
     //Deletes image if it exists
     private void deleteImage(String filename) {
-        File image = new File("./bambi-photos/" + filename);
+        File image = new File("static/images/" + filename);
 
         if(image.exists()) {
             image.delete();
