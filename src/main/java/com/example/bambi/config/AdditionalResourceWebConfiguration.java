@@ -12,10 +12,10 @@ public class AdditionalResourceWebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        Path brandUploadDir = Paths.get("./bambi-photos");
+        Path brandUploadDir = Paths.get("/static/images");
         String brandUploadPath = brandUploadDir.toFile().getAbsolutePath();
 
-        registry.addResourceHandler("./bambi-photos/**").addResourceLocations("file:/" + brandUploadPath + "/");
+        registry.addResourceHandler("/images/**").addResourceLocations("file:/" + brandUploadPath + "/");
 
     }
 }
