@@ -136,7 +136,7 @@ public class Product {
     public String getLogoImagePath() {
         if (productImage == null || id == null) return null;
 
-        return "/bambi-photos/" +  productImage;
+        return "/images/" +  productImage;
     }
 
     public String getStockLevel() {
