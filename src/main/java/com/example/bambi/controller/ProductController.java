@@ -218,7 +218,7 @@ public class ProductController {
     private void saveImageToFolder(MultipartFile image) throws IOException {
         String filename = image.getOriginalFilename();
 
-        String uploadDir = "./bambi-photos/";
+        String uploadDir = "/static/images/";
         Path uploadPath = Paths.get(uploadDir);
 
         if (!Files.exists(uploadPath)) {
